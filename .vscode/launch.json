@@ -1,0 +1,14 @@
+{
+  "version": "0.3.0",
+  "configurations": [
+    {
+      "type": "minecraft-js",
+      "request": "attach",
+      "name": "Debug with Minecraft",
+      "mode": "connect",
+      "localRoot": "${workspaceFolder}/src",
+      "sourceMapRoot": "${workspaceFolder}/dist/behavior_pack/scripts/",
+      "port": 19144
+    }
+  ]
+}

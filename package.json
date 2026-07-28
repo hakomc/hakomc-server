@@ -1,0 +1,35 @@
+{
+  "name": "yourpluginname",
+  "version": "1.0.0",
+  "description": "my first plugin",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:app && npm run build:lib",
+    "build:app": "tsc && vite build --config vite.config.app.js",
+    "build:lib": "tsc && vite build --config vite.config.lib.js",
+    "prepare": "npm run build:lib"
+  },
+  "main": "./dist/lib/index.js",
+  "module": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/lib/index.d.ts",
+      "import": "./dist/lib/index.js"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "@minecraft/server": "^2.8.0",
+    "@minecraft/server-ui": "2.1.0",
+    "eslint": "^9.38.0",
+    "prismarine-nbt": "^2.8.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.7",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "dependencies": {
+    "hakomc": "github:hakomc/hakomc#main"
+  }
+}

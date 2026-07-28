@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "BlockceptionLtd.blockceptionvscodeminecraftbedrockdevelopmentextension",
+    "EditorConfig.EditorConfig",
+    "mojang-studios.minecraft-debugger",
+    "netcorext.uuid-generator",
+  ]
+}

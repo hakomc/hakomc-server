@@ -1,0 +1,45 @@
+services:
+  bds:
+    platform: linux/amd64
+    image: itzg/minecraft-bedrock-server
+    ports:
+      - "${SERVER_PORT:-19132}:19132/udp"
+      - "${SCRIPT_DEBUGGER_PORT:-19144}:19144"
+      - "${SCRIPT_DEBUGGER_PORT:-19144}:19144/udp"
+    volumes:
+      - "./dist/behavior_pack:/data/behavior_packs/BP"
+      - "./resource_pack_dev:/data/resource_packs/RP"
+      - "./worlds:/data/worlds"
+      - "./config:/data/config"
+    environment:
+      - SERVER_NAME=hakomc-server
+      - DEFAULT_PLAYER_PERMISSION_LEVEL=operator
+      - EULA=TRUE
+      - ONLINE_MODE=true
+      - ALLOW_LIST=false
+      - LEVEL_NAME=DevWorld
+      - LEVEL_TYPE=flat
+      - GAMEMODE=creative
+      - DEFAULT_PLAYER_PERMISSION_LEVEL=operator
+      - ALLOW_CHEATS=true
+      - ALLOW_OUTBOUND_SCRIPT_DEBUGGING=true
+      - ALLOW_INBOUND_SCRIPT_DEBUGGING=true
+      - SCRIPT_DEBUGGER_AUTO_ATTACH=listen
+      - CONTENT_LOG_CONSOLE_OUTPUT_ENABLED=true
+      - FORCE_INBOUND_DEBUG_PORT=${SCRIPT_DEBUGGER_PORT:-19144}
+      - OPS=${OPS}
+    depends_on:
+      dev:
+        condition: service_completed_successfully
+  dev:
+    image: node:23.11.1-alpine
+    working_dir: /app
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ".:/app"
+    tmpfs:
+      - /tmp
+    entrypoint: sh -c "npm install && npm run build:app"
+    environment:
+      - NODE_ENV=development
+      - NPM_CONFIG_CACHE=/tmp/.npm
