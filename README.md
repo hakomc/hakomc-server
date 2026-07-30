@@ -7,17 +7,35 @@ A development template for Minecraft Bedrock Edition add-ons built on [hakomc](h
 - [Node.js](https://nodejs.org/) (LTS recommended)
 - [Docker](https://www.docker.com/) and Docker Compose
 
-## Using this template
+## Setup
 
-Before building your own add-on on top of this template, update the placeholders left for a new project:
+### Quick start
+
+Bootstrap a new project from this template with the setup script, which clones the repo and fills in the placeholders (package name/description, behavior pack UUID, `.env`) for you:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hakomc/hakomc/main/scripts/setup-hakomc-server.sh | bash -s -- --name my-plugin
+```
+
+Any option left unset is prompted for interactively; run with `--help` to see the full list of options.
+
+Then:
+
+```bash
+cd my-plugin
+npm install
+docker compose up
+```
+
+### Manual setup
+
+If you'd rather set things up by hand (or are working directly in this template repo), update the placeholders left for a new project:
 
 - `package.json` — set `name` (currently `yourpluginname`) and `description` to your add-on's own values.
 - `vite.config.app.js` — in `hakomcPlugin({ name, uuid })`, set `name` to your add-on's name, and replace `uuid` with a freshly generated one (e.g. `node -e "console.log(crypto.randomUUID())"`). This UUID identifies the behavior pack in its manifest, so it must be unique to your add-on, not shared with this template or other projects.
 - `worlds/DevWorld/world_behavior_packs.json` — update `pack_id` to the same UUID you just set above, so the dev world keeps loading the behavior pack.
 
-Then write your add-on's code starting from `src/index.ts`.
-
-## Setup
+Then:
 
 1. Install dependencies:
 
@@ -43,7 +61,11 @@ Then write your add-on's code starting from `src/index.ts`.
    docker compose up
    ```
 
-4. Connect to the server at `localhost:<SERVER_PORT>` (default `19132`) from a Bedrock client on the same machine/network.
+Then write your add-on's code starting from `src/index.ts`.
+
+### Connecting
+
+Connect to the server at `localhost:<SERVER_PORT>` (default `19132`) from a Bedrock client on the same machine/network.
 
 ## Build
 
