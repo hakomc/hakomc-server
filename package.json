@@ -30,6 +30,6 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "dependencies": {
-    "hakomc": "github:hakomc/hakomc#main"
+    "hakomc": "^1.0.0"
   }
 }
