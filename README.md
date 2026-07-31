@@ -63,6 +63,10 @@ Then:
 
 Then write your add-on's code starting from `src/index.ts`.
 
+## API documentation
+https://github.com/hakomc/hakomc/tree/main/docs/api
+
+
 ### Connecting
 
 Connect to the server at `localhost:<SERVER_PORT>` (default `19132`) from a Bedrock client on the same machine/network.
