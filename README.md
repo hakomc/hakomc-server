@@ -52,6 +52,7 @@ Then:
    | Variable | Description |
    | --- | --- |
    | `OPS` | XUIDs to grant operator permissions to on the dev server |
+   | `SERVER_NAME` | Name shown for the Bedrock server (default `hakomc-server`) |
    | `SERVER_PORT` | UDP port the Bedrock server listens on (default `19132`) |
    | `UID` / `GID` | Host user/group ID used by the `dev` container, so build output isn't owned by root |
 
