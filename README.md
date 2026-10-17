@@ -11,7 +11,7 @@ A development template for Minecraft Bedrock Edition add-ons built on [hakomc](h
 
 ### Quick start
 
-Bootstrap a new project from this template with the setup script, which clones the repo and fills in the placeholders (package name/description, behavior pack UUID, `.env`) for you:
+Bootstrap a new project from this template with the setup script, which clones the repo and fills in the placeholders (package name/description, behavior and resource pack UUIDs, `.env`) for you:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/hakomc/hakomc/main/scripts/setup-hakomc-server.sh | bash -s -- --name my-plugin
@@ -33,7 +33,9 @@ If you'd rather set things up by hand (or are working directly in this template 
 
 - `package.json` — set `name` (currently `yourpluginname`) and `description` to your add-on's own values.
 - `vite.config.app.js` — in `hakomcPlugin({ name, uuid })`, set `name` to your add-on's name, and replace `uuid` with a freshly generated one (e.g. `node -e "console.log(crypto.randomUUID())"`). This UUID identifies the behavior pack in its manifest, so it must be unique to your add-on, not shared with this template or other projects.
+- `vite.config.app.js` — also replace `resourcePack.uuid` with another freshly generated UUID (different from the behavior pack's). It identifies the resource pack, which holds the textures, models and sounds in `assets/` and the visuals generated from `hakomc/entity` definitions.
 - `worlds/DevWorld/world_behavior_packs.json` — update `pack_id` to the same UUID you just set above, so the dev world keeps loading the behavior pack.
+- `worlds/DevWorld/world_resource_packs.json` — likewise, update `pack_id` to the resource pack UUID.
 
 Then:
 
@@ -76,7 +78,7 @@ Connect to the server at `localhost:<SERVER_PORT>` (default `19132`) from a Bedr
 
 | Command | Description |
 | --- | --- |
-| `npm run build:app` | Type-checks and bundles the add-on into a behavior pack under `dist/behavior_pack/`, for use with the dev server. |
+| `npm run build:app` | Type-checks and bundles the add-on into a behavior pack under `dist/behavior_pack/` and a resource pack under `dist/resource_pack/`, for use with the dev server. The server requires clients to download the resource pack (`TEXTUREPACK_REQUIRED`). |
 | `npm run build:lib` | Type-checks and bundles the project as a distributable library (`dist/lib/`), for consumption by other packages. |
 | `npm run build` | Runs both of the above. |
 
