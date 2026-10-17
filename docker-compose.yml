@@ -8,7 +8,7 @@ services:
       - "${SCRIPT_DEBUGGER_PORT:-19144}:19144/udp"
     volumes:
       - "./dist/behavior_pack:/data/behavior_packs/BP"
-      - "./resource_pack_dev:/data/resource_packs/RP"
+      - "./dist/resource_pack:/data/resource_packs/RP"
       - "./worlds:/data/worlds"
       - "./config:/data/config"
     environment:
@@ -22,6 +22,7 @@ services:
       - GAMEMODE=creative
       - DEFAULT_PLAYER_PERMISSION_LEVEL=operator
       - ALLOW_CHEATS=true
+      - TEXTUREPACK_REQUIRED=true
       - ALLOW_OUTBOUND_SCRIPT_DEBUGGING=true
       - ALLOW_INBOUND_SCRIPT_DEBUGGING=true
       - SCRIPT_DEBUGGER_AUTO_ATTACH=listen
